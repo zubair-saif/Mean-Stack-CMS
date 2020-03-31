@@ -6,12 +6,12 @@ MEAN Stack Blog CMS Build with Mongoose/MongoDB, Express, Angular 9 and Node.js,
 
 This is a MEAN stack blog for fast and quick blogging on the go, full CRUD capabilities and user authentication, allows multiple users.
 
-- User Authentication
+- User authentication
 - User Post Dashboard
-- Categorisable Posts
-- Full CMS post creation functionality
-- Text/Code/Image input fields for posts
+- Creating, editing and deleting posts, voting posts
+- Creating comments, replying to comments
 - Fully custom lightweight styles
+- Bootstrap template integrated
 
 # Build notes:
 
