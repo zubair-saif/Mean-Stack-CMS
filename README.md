@@ -1,1 +1,1 @@
-# Mean-Stack-CMS
+# Mean Stack CMS
