@@ -1,6 +1,6 @@
 # Mean Stack CMS
 
-MEAN Stack Blog CMS Build with Mongoose/MongoDB, Express, Angular 4 and Node.js, still in production...
+MEAN Stack Blog CMS Build with Mongoose/MongoDB, Express, Angular 9 and Node.js, still in production...
 
 # Basic Functionalities
 
