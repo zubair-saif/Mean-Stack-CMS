@@ -1,0 +1,68 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "baseUrl": "src",
+    "paths": {
+      "@shared/*": [
+        "app/shared/*"
+      ],
+      "@header*": [
+        "app/component/header/header.component"
+      ],
+      "@footer*": [
+        "app/component/footer/footer.component"
+      ],
+      "@home*": [
+        "app/pages/home/home.component"
+      ],
+      "@profile*": [
+        "app/pages/profile/profile.component"
+      ],
+      "@login*": [
+        "app/pages/login/login.component"
+      ],
+      "@register*": [
+        "app/pages/register/register.component"
+      ],
+      "@component*": [
+        "app/component/component.module"
+      ],
+      "@public-layouts*": [
+        "app/layouts/public-layouts/public-layouts.component"
+      ],
+      "@auth-layouts*": [
+        "app/layouts/auth-layouts/auth-layouts.component"
+      ],
+      "@environments*": [
+        "environments/environment"
+      ],
+      "@models*": [
+        "app/shared/models"
+      ],
+      "@shared/service*": [
+        "app/shared"
+      ],
+    },
+    "outDir": "./dist/out-tsc",
+    "sourceMap": true,
+    "declaration": false,
+    "downlevelIteration": true,
+    "experimentalDecorators": true,
+    "module": "esnext",
+    "moduleResolution": "node",
+    "importHelpers": true,
+    "target": "es2015",
+    "typeRoots": [
+      "node_modules/@types"
+    ],
+    "lib": [
+      "es2018",
+      "dom"
+    ]
+  },
+  "angularCompilerOptions": {
+    "fullTemplateTypeCheck": true,
+    "strictInjectionParameters": true,
+    "enableIvy": false
+  }
+}

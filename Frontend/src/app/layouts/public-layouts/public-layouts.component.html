@@ -1,0 +1,55 @@
+<div class="top-scroll-bar"></div>
+<!--Mobile navigation-->
+<div class="sticky-header fixed d-lg-none d-md-block">
+    <div class="text-right">
+        <div class="container mobile-menu-fixed pr-5">
+            <h1 class="logo-small navbar-brand"><a href="#" class="logo">Merinda</a></h1>
+
+            <a class="author-avatar" href="#"><img src="assets\images\author-avata-1.jpeg" alt=""></a>
+
+            <ul class="social-network heading navbar-nav d-lg-flex align-items-center">
+                <li><a href="#"><i class="icon-facebook"></i></a></li>
+            </ul>
+
+            <a href="javascript:void(0)" class="menu-toggle-icon">
+                <span class="lines"></span>
+            </a>
+        </div>
+    </div>
+
+    <div class="mobi-menu">
+        <div class="mobi-menu__logo">
+            <h1 class="logo navbar-brand"><a href="#" class="logo">Merinda</a></h1>
+        </div>
+        <form action="#" method="get" class="menu-search-form d-lg-flex">
+            <input type="text" class="search_field" placeholder="Search..." value="" name="s">
+        </form>
+        <nav>
+            <ul>
+                <li class="current-menu-item"><a href="#">Home</a></li>
+                <li class="menu-item-has-children"><a href="#">Categories</a>
+                    <ul class="sub-menu">
+                        <li><a href="#">Politics</a></li>
+                        <li><a href="#">Health</a></li>
+                        <li><a href="#">Design</a></li>
+                    </ul>
+                </li>
+                <li><a href="#">Typography</a></li>
+                <li><a href="#">Politics</a></li>
+                <li><a href="#">Health</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </nav>
+    </div>
+</div>
+<!--Mobile navigation-->
+
+
+<div id="wrapper">
+    <app-header></app-header>
+    <router-outlet></router-outlet>
+    <app-footer></app-footer>
+</div>
+
+<a href="#" class="back-to-top heading" style="display: inline;"><i class="icon-left-open-big"></i><span
+        class="d-lg-inline d-md-none">Top</span></a>
