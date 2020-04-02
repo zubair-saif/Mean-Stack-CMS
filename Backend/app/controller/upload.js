@@ -3,7 +3,7 @@ const router = express.Router();
 const multer = require('multer');
 const uuidv4 = require('../../helper_functions/generator');
 let fs = require('fs-extra');
-
+const passport = require('passport');
 //GENERIC UPLOAD ROUTE
 
 const storage = multer.diskStorage({
@@ -21,7 +21,7 @@ const storage = multer.diskStorage({
 var upload = multer({ storage: storage }).single('file');
 
 //routes
-router.post('/uploadImage/:type', function (req, res, next) {
+router.post('/uploadImage/:type', passport.authenticate('jwt', { session: false }), function (req, res, next) {
     var path = '';
     upload(req, res, function (err) {
         if (err || typeof req.file === 'undefined') {
@@ -33,4 +33,17 @@ router.post('/uploadImage/:type', function (req, res, next) {
     });
 });
 
-module.exports = router;
+// module.exports.uploads = function (req, res, next) {
+//     var path = '';
+//     upload(req, res, function (err) {
+//         if (err || typeof req.file === 'undefined') {
+//             next(res.json("error while uploading", err, 500));
+//         } else {
+//             path = req.file.filename;
+//             next(res.json(true, 200, 'Upload Success', path));
+//         }
+//     });
+// }
+
+module.exports.uploads =
+    module.exports = router;

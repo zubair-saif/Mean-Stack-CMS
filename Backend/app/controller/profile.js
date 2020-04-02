@@ -50,7 +50,7 @@ module.exports.updateProfile = async (req, res) => {
                 }
             });
 
-        profile = {
+        const profile = {
 
             firstName: req.body.firstName,
             lastName: req.body.lastName,

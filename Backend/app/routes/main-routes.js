@@ -10,6 +10,7 @@ const loginCtrl = require('../controller/login');
 const resetCtrl = require('../controller/resetPassword');
 const signupCtrl = require('../controller/signup');
 const commentCtrl = require('../controller/comments');
+
 /**
  * user athancations routes
  */
@@ -42,14 +43,17 @@ router.post('/createpost',
     passport.authenticate('jwt', { session: false }),
     articleCtrl.create);
 router.put('/updatepost/:id',
-    articleCtrl.updatePost,
-    passport.authenticate('jwt', { session: false })
+    passport.authenticate('jwt', { session: false }),
+    articleCtrl.updatePost
 );
 router.get('/getsinglepost/:id', articleCtrl.getSinglePost);
 router.delete('/posts/:id',
     passport.authenticate('jwt', { session: false }),
     articleCtrl.deletePost);
 
+router.get('/my-post',
+    passport.authenticate('jwt', { session: false }),
+    articleCtrl.fetchPostbyUserId);
 
 /**
  * comments routes 
@@ -61,6 +65,12 @@ router.post('/comment/:postId',
     passport.authenticate('jwt', { session: false }),
     commentCtrl.commentOnPost
 );
+
+
+/**
+ * uploads
+ */
+// router.post('upload/uploadImage/:type', uploadRoutes.uploads)
 
 module.exports = router;
 

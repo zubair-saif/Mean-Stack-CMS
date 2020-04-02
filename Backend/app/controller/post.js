@@ -18,16 +18,16 @@ module.exports.create = async (req, res) => {
             like: form.like,
             imageLink: form.imageLink,
             imagesContent: form.imagesContent,
-            tag: form.tag,
+            tag: form.tag.split(','),
             authorId: user._id,
             author: user.firstName + '' + user.lastName
         });
-
         posts.save();
+
         return res.json({ message: "Successfully Created" });
     }
-    catch{
-        res.json({ message: "something went wrong" });
+    catch (err) {
+        res.json({ message: "something went wrong" + err });
     }
 }
 
@@ -159,6 +159,9 @@ module.exports.fetchPostbyUserId = async (req, res) => {
 
 }
 
+module.exports.getLatestPost = async (req, res) => {
+
+}
 
 /**
  * Post Deleted with comment 

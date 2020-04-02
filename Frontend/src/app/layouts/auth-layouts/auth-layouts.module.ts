@@ -9,12 +9,12 @@ import { AuthLayoutsRoutingModule } from './auth-layouts-routing.module';
 import { LoginComponent } from '@login';
 import { RegisterComponent } from '@register';
 
-
 @NgModule({
 
   declarations: [
     LoginComponent,
     RegisterComponent,
+   
   ],
   imports: [
     CommonModule,

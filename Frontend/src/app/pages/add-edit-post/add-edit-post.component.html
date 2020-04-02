@@ -1,0 +1,103 @@
+<div class="container">
+    <div class="card shadow mt-4 border-0 p-4">
+        <div class="row">
+            <div class="col">
+                <h1> {{isEdit? 'Edit an article':'Create a New Post'}} </h1>
+            </div>
+            <div class="col-auto">
+                <a routerLink="/my-profile" class="btn btn-primary btn-sm">Profile</a>
+            </div>
+        </div>
+
+        <div class="row">
+            <form class="col-12" [formGroup]="articleForm" (ngSubmit)="onSubmitArticles()">
+                <div class="form-row">
+                    <div class="col-md-6 mb-3">
+                        <label for="posttitle">Title</label>
+                        <input type="text" class="form-control" name="title" placeholder="title" formControlName="title"
+                            [ngClass]="{'is-invalid':isubmitted && articleForm.controls.title.errors}">
+                        <div class="invalid-feedback"
+                            *ngIf="isubmitted && articleForm.controls.title.errors && articleForm.controls.title.errors.required">
+                            Title required
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="rtime">Read Time</label>
+                        <input type="text" class="form-control" name="readeTime" placeholder="Read Time"
+                            formControlName="readTime">
+                    </div>
+                    <div class="col-md-12 mb-3">
+                        <label for="tag">Tag</label>
+                        <input type="text" class="form-control" name="tag" formControlName="tag"
+                            placeholder="write tag comma seprated Example:Nodejs , express ">
+                    </div>
+
+                </div>
+                <div class="form-row">
+
+                    <div class="col-12 mb-3">
+                        <label for="forPreview">Preview</label>
+                        <textarea class="form-control is-invalid" name="preview" formControlName="preview"
+                            placeholder=" Write post lead here"></textarea>
+                        <!-- <div class="invalid-feedback">
+                            Please enter a message in the textarea.
+                        </div> -->
+                    </div>
+                    <div class="col-12 mb-3">
+                        <label for="forContent">Content</label>
+                        <textarea class="form-control is-invalid" name="content" formControlName="content"
+                            placeholder=" Write post content here"></textarea>
+                        <!-- <div class="invalid-feedback">
+                            Please enter a message in the textarea.
+                        </div> -->
+                    </div>
+
+                </div>
+                <div class="form-row">
+                    <div class="col-6 mb-3 form-group">
+
+                        <label for="inputImage">Lead picture</label>
+                        <input type="file" #inputImage (change)="fileChangeEvent(false)" class="form-control-file"
+                            formControlName="imageLink" id="inputImage"
+                            [ngClass]="{ 'is-invalid': isubmitted && articleForm.controls.imageLink.errors }">
+                        <div class="invalid-feedback"
+                            *ngIf="isubmitted && articleForm.controls.imageLink.errors && articleForm.controls.imageLink.errors.required">
+                            Picture required
+                        </div>
+                        <div *ngIf="fileError" class="alert alert-danger mt-1">
+                            {{fileError}}
+                        </div>
+                        <div *ngIf="articleForm.value.imageLink" class="col-md-6 offset-md-6">
+                            <img class="uploadImagePreview"
+                                [src]="config.getPublicImageUrl() + '/blog/' + articleForm.get('imageLink')" />
+                        </div>
+
+                    </div>
+                    <div class="col-6 mb-3 form-group">
+                        <label for="inputContentImage">Pictures linked to the article</label>
+                        <input type="file" #inputContentImage (change)="fileChangeEvent(true)" class="form-control-file"
+                            id="inputContentImage">
+                        <div *ngIf="fileContentError" class="alert alert-danger mt-1">
+                            {{fileContentError}}
+                        </div>
+                        <div *ngFor="let image of this.articleForm.value['imagesContent']">
+                            <div class="blogAddContentImage">
+                                <img class="uploadImagePreview"
+                                    [src]="config.getPublicImageUrl() + '/blogArticleContent/' + image.imageLink" />
+                                <i (click)="removeContentImage(image.imageLink)" class="fas fa-times-circle"></i>
+                            </div>
+
+                            {{config.getPublicImageUrl() + '/blogArticleContent/' + image.imageLink}}
+                        </div>
+                    </div>
+                </div>
+
+                <button *ngIf='!isEdit' class="btn btn-primary mt-2" type="submit">Add</button>
+                <button *ngIf='isEdit' class="btn btn-success mt-2" type="submit">Update</button>
+            </form>
+        </div>
+
+
+    </div>
+
+</div>

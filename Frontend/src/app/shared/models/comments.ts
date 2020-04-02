@@ -1,8 +1,11 @@
+import { Posts } from './posts';
 import { Users } from './users';
 
 export interface Comments {
-    name: string;
-    email: string;
+
+    author: string;
     message: string;
+    time: Date;
     postId: Users;
+    authorId: Posts;
 }

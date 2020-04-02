@@ -8,7 +8,8 @@ const swaggerUi = require('swagger-ui-express');
 const swaggerDocument = require('./swagger.json');
 
 const mainRoutes = require('./app/routes/main-routes');
-const uploadRoutes = require('./app/controller/updload');
+const uploadRoutes = require('./app/controller/upload');
+
 const error = require('./middleware/errorHandler');
 const dbConfig = require('./config/db');
 const passport = require('passport');

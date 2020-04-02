@@ -14,11 +14,13 @@ import { PublicLayoutsComponent } from '@public-layouts';
 import { AuthLayoutsComponent } from '@auth-layouts';
 import { AuthInterceptor } from './shared/core/auth-interceptor.service';
 
+
 @NgModule({
   declarations: [
     AppComponent,
     PublicLayoutsComponent,
-    AuthLayoutsComponent
+    AuthLayoutsComponent,
+
   ],
   imports: [
     FormsModule,

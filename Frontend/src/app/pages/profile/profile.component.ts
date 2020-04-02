@@ -1,7 +1,8 @@
-import { ApiService } from './../../shared/service/api.service';
+
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../shared/core/auth.service';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { PostService, ApiService } from '@shared/service';
 
 @Component({
   selector: 'app-profile',
@@ -12,11 +13,13 @@ export class ProfileComponent implements OnInit {
 
   public user: any = {};
   profileForm: FormGroup;
+  postList = [];
 
   constructor(
     private auth: AuthService,
     private apise: ApiService,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private postService: PostService
   ) { }
 
 
@@ -30,7 +33,7 @@ export class ProfileComponent implements OnInit {
     });
 
     // Object.assign(this.user, this.apise.getUser(this.auth.getUserId));
-
+    this.myPost();
   }
 
   profile() {
@@ -38,7 +41,12 @@ export class ProfileComponent implements OnInit {
 
     });
   }
-
+  myPost() {
+    this.postService.getpostByUserId(this.auth.getUserId).subscribe(res => {
+      this.postList = res;
+      console.log(res);
+    });
+  }
   logout() {
     this.auth.logout();
   }

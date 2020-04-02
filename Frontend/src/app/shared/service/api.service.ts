@@ -18,7 +18,7 @@ export class ApiService {
     private formatErrors(error: any) {
         return throwError(error.error);
     }
-    get(path: string, params): Observable<any> {
+    get(path: string, params?): Observable<any> {
 
         return this.http.get(`${this.ApiUrl}${path}`, { params })
             .pipe(catchError(this.formatErrors));
@@ -39,5 +39,13 @@ export class ApiService {
     }
     getUser(data): Observable<any> {
         return this.http.get(`${this.ApiUrl}/verify-jwt`);
+    }
+    public getUploadUrl() {
+
+        return this.ApiUrl + '/upload/';
+    }
+    public getPublicImageUrl() {
+        return this.ApiUrl + + '/media/uploads';
+
     }
 }
