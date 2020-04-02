@@ -8,6 +8,7 @@ const swaggerUi = require('swagger-ui-express');
 const swaggerDocument = require('./swagger.json');
 
 const mainRoutes = require('./app/routes/main-routes');
+const uploadRoutes = require('./app/controller/updload');
 const error = require('./middleware/errorHandler');
 const dbConfig = require('./config/db');
 const passport = require('passport');
@@ -28,7 +29,9 @@ app.use(cors());
 app.use(morgan('tiny'));
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 // app.use('/api/v1', router);
+app.use("/media", express.static('media'));
 app.use('/api', mainRoutes);
+app.use('/api/upload', uploadRoutes);
 
 app.use(error); //this is the error handler for all promise rejections in the server.
 
