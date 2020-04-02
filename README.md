@@ -27,6 +27,7 @@ This is a MEAN stack blog for fast and quick blogging on the go, full CRUD capab
 
 # To-Do:
 
+- Some Api integration remaining
 - Full responsiveness/Cross Browser stylings need finishing
 - Improve UI for initial load
 - Add animations to post/page navigation
