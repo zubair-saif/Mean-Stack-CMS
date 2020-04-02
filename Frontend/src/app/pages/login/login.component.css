@@ -267,4 +267,9 @@
         padding: 0;
     }
 }
-/** Login 17 end **/
+
+
+.form-text{
+    margin-top: .25rem;
+    display: flex;
+}

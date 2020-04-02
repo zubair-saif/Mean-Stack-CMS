@@ -14,9 +14,13 @@ module.exports.create = async (req, res) => {
             title: form.title,
             content: form.content,
             readTime: form.readTime,
+            preview: form.preview,
             like: form.like,
+            imageLink: form.imageLink,
+            imagesContent: form.imagesContent,
             tag: form.tag,
-            createdBy: user._id
+            authorId: user._id,
+            author: user.firstName + '' + user.lastName
         });
 
         posts.save();
@@ -25,8 +29,6 @@ module.exports.create = async (req, res) => {
     catch{
         res.json({ message: "something went wrong" });
     }
-
-
 }
 
 // module.exports.getPost = async (req, res) => {
@@ -59,6 +61,49 @@ module.exports.create = async (req, res) => {
 // ]);
 
 /**
+ * update Post
+ * Check if current post can be updated or deleted by the authenticated user: 
+ * The author can only make change to his/her own posts
+ */
+
+
+module.exports.updatePost = async (req, res) => {
+
+    try {
+
+        const result = validate(req.body);
+        if (result.error) {
+            res.status(400).json({ message: result.error.details[0].message });
+        }
+
+        const postData = {
+            title: form.title,
+            content: form.content,
+            readTime: form.readTime,
+            preview: form.preview,
+            imageLink: form.imageLink,
+            imagesContent: form.imagesContent,
+            tag: form.tag,
+            lastModified: new Date(),
+        }
+
+        const updatePosts = await Posts.findByIdAndUpdate(req.params._id,
+            { $set: postData }, { new: true }
+        );
+
+        if (!user._id.equals(updatePosts.authorId)) {
+            res.send({ allowChange: false });
+            res.save(updatePosts);
+        }
+        res.send({ allowChange: true });
+        return res.json({ message: "Post Updated successfully !" });
+    }
+    catch{
+
+    }
+}
+
+/**
  * Get single Post By (Post ID)
  */
 
@@ -76,47 +121,6 @@ module.exports.getSinglePost = async (req, res) => {
 
 };
 
-/**
- * Get Signle post with All Comment By (Comment Id);
- */
-
-module.exports.SinglePostWithAllComment = async (req, res) => {
-
-    try {
-        const comment = await Comments.find({ postId: req.params.id })
-            .select({})
-            .limit(100)
-            .sort({ time: 1 })
-        if (!comment) {
-            res.json({ message: "comment not found with this post" });
-        }
-        res.send(comment);
-    }
-    catch{
-        res.json({ message: "something went wrong" });
-    }
-
-}
-
-module.exports.commentOnPost = async (req, res) => {
-    try {
-        const post = await Posts.findOne({ _id: req.params.id });
-        const comment = new Comments({
-            name: req.body.name,
-            email: req.body.email,
-            message: req.body.message,
-            postId: post._id,
-        });
-        comment.save();
-        res.send(comment);
-
-    }
-    catch {
-        res.json({ message: "something Wrong" });
-    }
-
-}
-
 module.exports.getAllPosts = async (req, res) => {
     try {
         const posts = await Posts.find(res.body);
@@ -131,8 +135,34 @@ module.exports.getAllPosts = async (req, res) => {
 }
 
 /**
+ * fetch post by user Id
+ */
+
+module.exports.fetchPostbyUserId = async (req, res) => {
+
+    try {
+        const user = req.user;
+
+        const posts = await Posts.find({ authorId: user._id })
+            .select({})
+            .limit(100)
+            .sort({ createdAt: -1 }).exec();
+        if (!posts) {
+            res.status(422).json({ message: "Could not retrieve posts." });
+        }
+        res.json(posts);
+    }
+    catch{
+        res.json({ message: "something went wrong during  " });
+    }
+
+
+}
+
+
+/**
  * Post Deleted with comment 
- * */
+*/
 
 module.exports.deletePost = async (req, res) => {
     try {
@@ -150,4 +180,3 @@ module.exports.deletePost = async (req, res) => {
         res.json({ message: "Something Went Wrong while deleting Post " });
     }
 }
-

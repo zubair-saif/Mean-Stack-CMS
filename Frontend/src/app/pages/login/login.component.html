@@ -20,19 +20,52 @@
                 <div class="col-lg-7 col-sm-12 col-pad-0 align-self-center">
                     <div class="login-inner-form">
                         <div class="details">
-                            <h3>Create an account</h3>
+                            <h3 *ngIf="authType=='login'">Please Login</h3>
+                            <h3 *ngIf="authType=='register'">Create an account</h3>
+
                             <form [formGroup]="authForm" (ngSubmit)="onSubmit()">
-                                <!-- <div class="form-group">
-                                    <input type="text" name="fullname" class="input-text" placeholder="Full Name">
-                                </div> -->
+
+                                <div class="form-group">
+                                    <input type="text" name="firstName" class="input-text" formControlName="firstName"
+                                        placeholder="First Name" *ngIf="authType=='register'">
+
+
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" name="firstName" class="input-text" formControlName="lastName"
+                                        placeholder="Last Name" *ngIf="authType=='register'">
+
+                                    <!-- <div class="invalid-feedback"
+                                        *ngIf="isSubmitted && myForm.lastName.errors?.required">
+                                        Last Name is required.
+                                    </div> -->
+                                </div>
                                 <div class="form-group">
                                     <input type="email" name="email" class="input-text" formControlName="email"
                                         placeholder="Email Address">
+
+                                    <!-- <div class="invalid-feedback" *ngIf="isSubmitted && myForm.email.errors?.required">
+                                        Email is required.
+                                    </div> -->
                                 </div>
                                 <div class="form-group">
                                     <input type="password" name="password" formControlName="password" class="input-text"
                                         placeholder="Password">
+
+                                    <!-- <div class="invalid-feedback"
+                                        *ngIf="isSubmitted && myForm.password.errors?.required">
+                                        password is required.
+                                    </div> -->
                                 </div>
+                                <div class="form-group">
+                                    <input type="text" name="Phone" formControlName="phone" class="input-text"
+                                        placeholder="Phone" *ngIf="authType=='register'">
+
+                                    <!-- <div class="invalid-feedback" *ngIf="isSubmitted && myForm.phone.errors?.required">
+                                        phone is required.
+                                    </div> -->
+                                </div>
+
                                 <div class="checkbox clearfix">
                                     <!-- <div class="form-check checkbox-theme">
                                         <input class="form-check-input" type="checkbox" value="" id="rememberMe">
@@ -40,13 +73,20 @@
                                             Remember me
                                         </label>
                                     </div> -->
-                                    <a href="#">Forgot Password</a>
+                                    <a href="#">Forgot Password?</a>
                                 </div>
                                 <div class="form-group">
-                                    <button type="submit" class="btn-md btn-theme btn-block">Register</button>
+                                    <button type="submit" class="btn-md btn-theme btn-block"
+                                        [disabled]="!authForm.valid"> {{ title }}</button>
                                 </div>
+
                             </form>
-                            <p>Already a member? <a href="#">Login here</a></p>
+                            <p *ngIf="authType=='login'">Don't have an account? <a [routerLink]="['/register']">Register
+                                    here</a>
+                            </p>
+                            <p *ngIf="authType=='register'">Already a member? <a [routerLink]="['/login']">Login
+                                    here</a>
+                            </p>
                         </div>
                     </div>
                 </div>

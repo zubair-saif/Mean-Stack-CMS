@@ -1,22 +1,113 @@
 <div class="container">
-
-    <div class="page-header text-center">
-        <h1><span class="fa fa-anchor"></span> Profile Page</h1>
-        <a routerLink="/" (click)="logout()" class="btn btn-default btn-sm">Logout</a>
-    </div>
-
-    <div class="row">
-        <!-- LOCAL INFORMATION -->
-        <div class="col-sm-6">
-            <div class="well">
-                <h3><span class="fa fa-user"></span> Local</h3>
-                <p>
-                    <strong>Username:</strong> {{user.name}} {{user.firstName}} {{user.lastName}}<br>
-
-                    <strong>Email:</strong> {{user.email}}<br>
-                    <strong>Email:</strong> {{user.phone}}<br>
-                </p>
+    <div class="card shadow mt-4 border-0 p-4">
+        <div class="row">
+            <div class="col">
+                <h1> Profile </h1>
+            </div>
+            <div class="col-auto">
+                <a routerLink="/" (click)="logout()" class="btn btn-primary btn-sm">Logout</a>
             </div>
         </div>
+
+        <div class="row">
+            <form class="col-12">
+                <div class="form-row">
+                    <div class="col-md-4 mb-3">
+                        <label for="fname">First name</label>
+                        <input type="text" class="form-control" name="firstName" placeholder="First Name">
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <label for="lname">Last name</label>
+                        <input type="text" class="form-control" name="firstName" placeholder="Last Name">
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <label for="forEmail">Email</label>
+                        <input type="text" class="form-control" name="email" placeholder="Email">
+                    </div>
+
+                </div>
+                <div class="form-row">
+                    <div class="col-md-5 mb-3">
+                        <label for="forPhone">Phone</label>
+                        <input type="text" class="form-control" name="phone" placeholder="Phone">
+                    </div>
+                    <div class="col-md-5 mb-3">
+                        <label for="forCity">City</label>
+                        <input type="text" class="form-control" name="city" placeholder="City">
+                    </div>
+
+                    <div class="col-md-2 mb-3">
+                        <label for="forZip">Zip</label>
+                        <input type="text" class="form-control" name="zip" placeholder="Zip">
+                    </div>
+                    <div class="col-12 mb-3">
+                        <label for="forBio">Bio</label>
+                        <textarea class="form-control is-invalid" name="bio"
+                            placeholder=" Write about yourself"></textarea>
+                        <!-- <div class="invalid-feedback">
+                            Please enter a message in the textarea.
+                        </div> -->
+                    </div>
+                </div>
+
+                <button class="btn btn-primary mt-2" type="submit">Update</button>
+            </form>
+        </div>
+
+        <div class="row">
+
+            <div class="col-sm-6">
+                <div class="well">
+                    <p>
+                        <strong>Username:</strong> {{user.firstName}} {{user.lastName}}<br>
+
+                        <strong>Email:</strong> {{user.email}}<br>
+                        <strong>Email:</strong> {{user.phone}}<br>
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="row p-3">
+            <h2 class="pb-4">My Stories</h2>
+            <ul class="list-unstyled">
+                <li class="media">
+                    <img src="../../../assets/images/author-avata-1.jpeg" class="mr-3 img-fluid" alt="...">
+                    <div class="media-body ">
+                        <h5 class="mt-0 mb-1">List-based media object</h5>
+                        Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras
+                        purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi
+                        vulputate fringilla. Donec lacinia congue felis in faucibus.
+                    </div>
+                </li>
+                <li class="media my-4">
+                    <img src="../../../assets/images/author-avata-1.jpeg" class="mr-3" alt="...">
+                    <div class="media-body">
+                        <h5 class="mt-0 mb-1">List-based media object</h5>
+                        Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras
+                        purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi
+                        vulputate fringilla. Donec lacinia congue felis in faucibus.
+                    </div>
+                </li>
+                <li class="media">
+                    <img src="../../../assets/images/author-avata-1.jpeg" class="mr-3" alt="...">
+                    <div class="media-body">
+                        <h5 class="mt-0 mb-1">List-based media object</h5>
+                        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                        <hr />
+                        Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras
+                        purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi
+                        vulputate fringilla. Donec lacinia congue felis in faucibus.
+                        <div>
+                            <span class="badge badge-pill badge-info">Edit</span>
+                            <span class="badge badge-pill badge-danger">Delete</span>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+
     </div>
+
 </div>

@@ -3,9 +3,7 @@ const joi = require('joi');
 const bcrypt = require('bcrypt');
 
 const schema = new mongoose.Schema({
-    name: {
-        type: String
-    },
+
     firstName: {
         type: String,
     },
@@ -25,7 +23,16 @@ const schema = new mongoose.Schema({
     password: {
         type: String,
         required: true
-    }
+    },
+    city: {
+        type: String
+    },
+    occupation: {
+        type: String
+    },
+    bio: {
+        type: String
+    },
 
 });
 
@@ -36,6 +43,9 @@ function validate(users) {
         email: joi.string().email().required(),
         phone: joi.number().required(),
         password: joi.string().required(),
+        bio: joi.String().optional(),
+        city: joi.string().optional(),
+        Occupation: joi.string().optional(),
     }
     return joi.validate(users, schema);
 }

@@ -3,6 +3,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { AuthLayoutsRoutingModule } from './auth-layouts-routing.module';
 import { LoginComponent } from '@login';
@@ -21,7 +22,8 @@ import { RegisterComponent } from '@register';
     FormsModule,
     AuthLayoutsRoutingModule,
     HttpClientModule,
-    RouterModule
+    RouterModule,
+    NgbModule
   ]
 })
 export class AuthLayoutsModule { }

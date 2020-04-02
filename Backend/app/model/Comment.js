@@ -3,14 +3,9 @@ const joi = require('joi');
 
 const schema = new mongoose.Schema({
 
-    name: {
+    author: {
         type: String,
         required: true
-    },
-    email: {
-        type: String,
-        required: true
-
     },
     message: {
         type: String
@@ -20,7 +15,7 @@ const schema = new mongoose.Schema({
         default: Date.now()
     },
     postId: String,
-    createdBy: String,
+    authorId: String,
 
 });
 

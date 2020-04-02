@@ -3,15 +3,27 @@ const joi = require('joi');
 
 const schema = new mongoose.Schema({
 
-    title: String,
-    content: String,
-    readTime: Number,
-    imgeUrl: {
+    title: {
+        type: String
+    },
+    content: {
+        type: String
+    },
+    readTime: {
+        type: Number
+    },
+    preview: {
         type: String
     },
     like: {
         type: Number,
         default: 0
+    },
+    imageLink: {
+        type: String
+    },
+    imagesContent: {
+        type: Array
     },
     tag: {
         type: Array
@@ -20,7 +32,8 @@ const schema = new mongoose.Schema({
         type: Date,
         default: Date.now
     },
-    createdBy: String,
+    author: String,
+    authorId: String,
 
 });
 

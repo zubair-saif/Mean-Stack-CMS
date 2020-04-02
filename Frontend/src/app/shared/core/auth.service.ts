@@ -43,7 +43,6 @@ export class AuthService {
     this.userService.login(users).subscribe(res => {
       const token = res.token;
       this.token = token;
-      console.log(res);
       if (token) {
 
         this.isAuthancated = true;
@@ -51,6 +50,7 @@ export class AuthService {
         this.authStatusListner.next(true);
         this.setToken(token, this.userId);
         this.router.navigate(['my-profile']);
+
       }
     });
   }
@@ -61,6 +61,7 @@ export class AuthService {
     localStorage.setItem('userId', userId);
   }
   private getAutToken() {
+
     const token = localStorage.getItem('token');
     const userId = localStorage.getItem('userId');
 
@@ -80,8 +81,8 @@ export class AuthService {
   }
 
   autoAuthUser() {
+
     const authInformation = this.getAutToken();
-    console.log(authInformation);
     if (!authInformation) {
       return;
     }
@@ -101,5 +102,14 @@ export class AuthService {
     this.clearToken();
     this.router.navigate(['/']);
 
+  }
+
+  register(data) {
+    this.userService.register(data).subscribe(res => {
+      console.log(res);
+      return this.router.navigate(['/login']);
+    }, err => {
+      console.log(err);
+    });
   }
 }

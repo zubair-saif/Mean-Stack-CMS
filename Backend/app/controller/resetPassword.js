@@ -3,11 +3,11 @@ const bcrypt = require('bcrypt');
 const Users = require('../model/User').Users;
 const { sendResetPassEmail } = require('../../helper_functions/sendResetPass');
 const { URPTicket } = require('../model/userResetPass');
-const { sendErrorReport } = require('../../helper_functions/errorHandlerEmailer')
 
 module.exports.sendResetEmailPass = async (req, res) => {
+
     try {
-        const user = await Users.findOne({ email: req.body.email }).select('name email');
+        const user = await Users.findOne({ email: req.body.email }).select('firstName email');
 
         if (!user) {
             res.status(404).json({ message: 'User not Found!' })
@@ -37,10 +37,8 @@ module.exports.sendResetEmailPass = async (req, res) => {
         }
     } catch (error) {
 
-        sendErrorReport(error);
         res.status(400).json({ message: error })
 
     }
-
 
 }

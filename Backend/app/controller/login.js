@@ -45,7 +45,6 @@ module.exports.sigIn = async (req, res) => {
         res.json({ message: "Something Went Wrong" + err });
     }
 
-
 }
 
 function Validate(user) {

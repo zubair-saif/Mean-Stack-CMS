@@ -3,46 +3,66 @@ const express = require('express');
 const router = express.Router();
 const passport = require('passport');
 
-const employeeRoute = require('../controller/employee');
-const postController = require('../controller/post.js');
-const usersController = require('../controller/users');
-const LoginController = require('../controller/login');
-const resetEmailPass = require('../controller/resetPassword');
+// const employeeRoute = require('../controller/employee');
+const articleCtrl = require('../controller/post.js');
+const profileCtrl = require('../controller/profile');
+const loginCtrl = require('../controller/login');
+const resetCtrl = require('../controller/resetPassword');
+const signupCtrl = require('../controller/signup');
+const commentCtrl = require('../controller/comments');
+/**
+ * user athancations routes
+ */
 
+router.post('/signup', signupCtrl.signUp);
+router.post('/signin', loginCtrl.sigIn);
+router.post('/restpass', resetCtrl.sendResetEmailPass);
 
-router.post('/signup', usersController.signUp);
-router.post('/signin', LoginController.sigIn);
-router.post('/restpass', resetEmailPass.sendResetEmailPass);
+/**
+ *  profile routes
+ */
 
 router.get('/verify-jwt',
     passport.authenticate('jwt', { session: false }),
-    usersController.VerifyUser);
+    profileCtrl.profileFetch);
 
 
-// employee routes
-router.get('/', employeeRoute.getAll);
-router.post('/create', employeeRoute.create);
-router.put('/update/:id', employeeRoute.update);
-router.delete("/delete/:id", employeeRoute.delete);
-router.get('/read/:id', employeeRoute.getOne);
 
+/**
+ * articles routes 
+ * */
 
-router.get('/posts', postController.getAllPosts);
-router.post('/createPost',
+router.get('/posts', articleCtrl.getAllPosts);
+router.post('/createpost',
     passport.authenticate('jwt', { session: false }),
-    postController.create);
-
-router.get('/getOne/:id', postController.getSinglePost);
+    articleCtrl.create);
+router.put('/updatepost/:id',
+    articleCtrl.updatePost,
+    passport.authenticate('jwt', { session: false })
+);
+router.get('/getsinglepost/:id', articleCtrl.getSinglePost);
 router.delete('/posts/:id',
     passport.authenticate('jwt', { session: false }),
-    postController.deletePost);
+    articleCtrl.deletePost);
 
 
-router.get('/allcommentofpost/:id',
+/**
+ * comments routes 
+ */
+
+router.get('/allcommentofpost/:postId',
+    commentCtrl.fetchCommentsByPostId);
+router.post('/comment/:postId',
     passport.authenticate('jwt', { session: false }),
-    postController.SinglePostWithAllComment);
-router.post('/comment/:id',
-    passport.authenticate('jwt', { session: false }),
-    postController.commentOnPost);
+    commentCtrl.commentOnPost
+);
 
 module.exports = router;
+
+
+// // employee routes
+// router.get('/', employeeRoute.getAll);
+// router.post('/create', employeeRoute.create);
+// router.put('/update/:id', employeeRoute.update);
+// router.delete("/delete/:id", employeeRoute.delete);
+// router.get('/read/:id', employeeRoute.getOne);
